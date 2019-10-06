@@ -1,2 +1,2 @@
-# recommendation_system
-A recommendation system made from scratch in python 
+# Recommendation System
+A recommendation system for a Consultant company, made from scratch in python.
