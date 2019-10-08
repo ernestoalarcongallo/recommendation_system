@@ -6,7 +6,20 @@ class CollaborativeFilteringLR:
   def __init__(self, eta=0.05, n_iter=100):
     self.eta = eta
     self.n_iter = n_iter
-  
+
+  def fit(self, X, Theta, R, Y):
+    X_grad = X
+    Theta_grad = Theta
+
+    prediction = np.dot(X,Theta.transpose())
+    error = np.multiply(np.subtract(prediction, Y), R)
+    
+    for _ in range(self.n_iter):
+      X_grad += X_grad - self.eta * np.dot(error, Theta_grad)
+      Theta_grad += Theta_grad - self.eta * np.dot(error.transpose(), X_grad)
+    
+    return [X_grad, Theta_grad]
+
   def costFunctionAndGradients(self, X, Theta, R, Y):
     """ Collaborative filtering (Linear Regression) cost function
 
@@ -40,6 +53,3 @@ class CollaborativeFilteringLR:
     Theta_grad = np.dot(np.multiply(prediction, R).transpose(), X)
 
     return J, [X_grad, Theta_grad]
-  
-  def fit(self):
-
