@@ -37,6 +37,13 @@ def main():
   print('The cost function is:\n{}'.format(J))
   print('The X gradients are:\n{}'.format(grad[0]))
   print('The Theta gradients are:\n{}'.format(grad[1]))
+  [X_grad, Theta_grad] = cofi.fit(X, Theta, R, Y)
+
+  J, grad = cofi.costFunctionAndGradients(X_grad, Theta_grad, R, Y)
+  print('====================================')
+  print('The cost function is:\n{}'.format(J))
+  print('The X gradients are:\n{}'.format(grad[0]))
+  print('The Theta gradients are:\n{}'.format(grad[1]))
 
 if __name__ == '__main__':
   main()
